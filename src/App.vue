@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <the-navigation></the-navigation>
+    <the-search-bar></the-search-bar>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TheNavigation from "./components/header/TheNavigation.vue";
+import TheSearchBar from "./components/header/TheSearchBarr.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    TheNavigation,
+    TheSearchBar,
+  },
+  created() {
+    this.$store.dispatch("auth/tryLogin");
+    console.log(this.$store.getters["auth/userId"]);
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@300;400;500;600&family=Rubik:wght@400;600;700&family=Source+Sans+Pro:wght@200;300;400;600&family=Work+Sans:wght@300;400;500;600&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+  background-color: #e9e9e9;
+  font-family: "Work Sans", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  overflow-x: hidden;
 }
 </style>
